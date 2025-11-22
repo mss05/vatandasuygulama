@@ -37,15 +37,15 @@
             </div>
 
             <div class="stats-row">
-                <div class="stat-box" onclick="alert('Tebrikler! 12 ağacın kesilmesini önledin. 🌳')">
+                <div class="stat-box" onclick="alert('🌳 Sayende 12 ağaç kesilmekten kurtuldu!')">
                     <i class="fas fa-tree green-icon"></i>
                     <span class="val">12</span><span class="lbl">Ağaç</span>
                 </div>
-                <div class="stat-box" onclick="alert('Harika! Bir evin 2 günlük elektriğini kurtardın. ⚡')">
+                <div class="stat-box" onclick="alert('⚡ Bir evin 2 günlük elektriğini sağladın!')">
                     <i class="fas fa-bolt yellow-icon"></i>
                     <span class="val">45kW</span><span class="lbl">Enerji</span>
                 </div>
-                <div class="stat-box" onclick="alert('Süper! 300 litre temiz su kirlenmekten kurtuldu. 💧')">
+                <div class="stat-box" onclick="alert('💧 300 Litre su temiz kaldı!')">
                     <i class="fas fa-tint blue-icon"></i>
                     <span class="val">300L</span><span class="lbl">Su</span>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="info"><span>Eski Kitaplar</span><small>Dün • Onaylandı</small></div>
                     <span class="plus-score">+50 P</span>
                 </div>
-                <div class="list-item" onclick="alert('Bu işlem henüz inceleniyor. Tahmini onay süresi: 2 saat.')">
+                <div class="list-item" onclick="alert('İnceleme sürüyor, tahmini süre: 2 saat.')">
                     <div class="icon-bg glass"><i class="fas fa-wine-bottle"></i></div>
                     <div class="info"><span>Cam Şişeler</span><small>22 Kasım • İnceleniyor</small></div>
                     <span class="pending-score">...</span>
@@ -81,16 +81,9 @@
         <div id="view-map" class="tab-view" style="display: none;">
             <div class="map-container">
                 <img src="map.jpg" alt="Harita" class="map-image">
-                <div class="map-pin container-pin p1" onclick="showMapInfo('Kağıt Konteyneri', 'Doluluk: %40', 'green')">
-                    <i class="fas fa-recycle"></i>
-                </div>
-                <div class="map-pin container-pin p2" onclick="showMapInfo('Cam Kumbarası', 'Doluluk: %80', 'orange')">
-                    <i class="fas fa-wine-bottle"></i>
-                </div>
-                <div class="search-bar-map">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Atık noktası ara..." onfocus="this.placeholder='Konum aranıyor...'">
-                </div>
+                <div class="map-pin container-pin p1" onclick="showMapInfo('Kağıt Kumbarası', 'Doluluk: %40', '#2e7d32')"><i class="fas fa-recycle"></i></div>
+                <div class="map-pin container-pin p2" onclick="showMapInfo('Cam Kumbarası', 'Doluluk: %80', '#e65100')"><i class="fas fa-wine-bottle"></i></div>
+                
                 <div id="map-toast" class="map-toast" style="display: none;">
                     <strong id="toast-title">Başlık</strong>
                     <span id="toast-desc">Açıklama</span>
@@ -102,21 +95,12 @@
             <div class="leaderboard-header">
                 <i class="fas fa-trophy trophy-icon"></i>
                 <h2>Haftanın Çevrecileri</h2>
-                <p>Gaziantep sıralamasında <strong>#42</strong> sıradasın.</p>
+                <p>Sıralaman: <strong>#42</strong></p>
             </div>
             <div class="rank-list">
-                <div class="rank-item top-3" onclick="alert('Ayşe Yılmaz: 120 Görev Tamamladı')">
-                    <span class="rank-num">1</span><div class="rank-avatar">A</div>
-                    <span class="rank-name">Ayşe Yılmaz</span><span class="rank-score">2.400 P</span>
-                </div>
-                <div class="rank-item top-3" onclick="alert('Murat Kaya: 98 Görev Tamamladı')">
-                    <span class="rank-num">2</span><div class="rank-avatar color-2">M</div>
-                    <span class="rank-name">Murat Kaya</span><span class="rank-score">2.150 P</span>
-                </div>
-                <div class="rank-item your-rank">
-                    <span class="rank-num">42</span><div class="rank-avatar color-3">S</div>
-                    <span class="rank-name">Sen</span><span class="rank-score" id="leader-score">1.450 P</span>
-                </div>
+                <div class="rank-item top-3" onclick="alert('Ayşe: 120 Görev')"><span class="rank-num">1</span><div class="rank-avatar">A</div><span class="rank-name">Ayşe Y.</span><span class="rank-score">2.400 P</span></div>
+                <div class="rank-item top-3" onclick="alert('Murat: 98 Görev')"><span class="rank-num">2</span><div class="rank-avatar color-2">M</div><span class="rank-name">Murat K.</span><span class="rank-score">2.150 P</span></div>
+                <div class="rank-item your-rank"><span class="rank-num">42</span><div class="rank-avatar color-3">S</div><span class="rank-name">Sen</span><span class="rank-score">1.450 P</span></div>
             </div>
         </div>
 
@@ -136,7 +120,7 @@
                 <div class="menu-link" onclick="openModal('modal-settings')">
                     <i class="fas fa-cog"></i> <span>Ayarlar</span> <i class="fas fa-chevron-right arrow-icon"></i>
                 </div>
-                <div class="menu-link logout" onclick="alert('Çıkış yapılıyor...')">
+                <div class="menu-link logout" onclick="alert('Çıkış yapıldı.')">
                     <i class="fas fa-sign-out-alt"></i> <span>Çıkış</span>
                 </div>
             </div>
@@ -145,11 +129,20 @@
         <div style="height: 90px;"></div>
     </main>
 
+    <div id="modal-notifications" class="modal-overlay">
+        <div class="modal-box full-height">
+            <div class="modal-header"><h3>Bildirimler</h3><button class="btn-close-icon" onclick="closeModal('modal-notifications')"><i class="fas fa-times"></i></button></div>
+            <ul class="notif-list">
+                <li class="unread"><div class="icon-circle green"><i class="fas fa-check"></i></div><div class="notif-text"><strong>Atık Onaylandı</strong><p>+50 Puan hesabına eklendi.</p></div></li>
+                <li><div class="icon-circle yellow"><i class="fas fa-star"></i></div><div class="notif-text"><strong>Haftanın Lideri</strong><p>Sıralamada yükseliyorsun!</p></div></li>
+            </ul>
+        </div>
+    </div>
+
     <div id="modal-report" class="modal-overlay">
         <div class="modal-box">
             <div id="report-step-1">
-                <h3>♻️ Dönüşümü Başlat</h3>
-                <p>Atıkların fotoğrafını çekip gönder, ekiplerimiz kapından alsın.</p>
+                <h3>Atık Bildir</h3>
                 <div class="upload-zone" onclick="document.getElementById('user-file').click()">
                     <i class="fas fa-cloud-upload-alt"></i><p>Fotoğraf Yükle</p>
                 </div>
@@ -160,40 +153,19 @@
             <div id="report-step-2" style="display: none;">
                 <div class="success-anim"><i class="fas fa-check"></i></div>
                 <h3>Harikasın!</h3>
-                <p>Bildirimin ekiplere iletildi. Onaylanınca puanın hesabına yatacak.</p>
+                <p>Bildirimin alındı.</p>
                 <button class="btn-submit" onclick="finishReport()">Tamam</button>
             </div>
-        </div>
-    </div>
-
-    <div id="modal-notifications" class="modal-overlay">
-        <div class="modal-box full-height">
-            <div class="modal-header"><h3>Bildirimler</h3><button class="btn-close-icon" onclick="closeModal('modal-notifications')"><i class="fas fa-times"></i></button></div>
-            <ul class="notif-list">
-                <li class="unread">
-                    <div class="icon-circle green"><i class="fas fa-check"></i></div>
-                    <div class="notif-text"><strong>Atık Onaylandı</strong><p>Dünkü kağıt atık bildirimin onaylandı. +50 Puan!</p></div>
-                </li>
-                <li>
-                    <div class="icon-circle yellow"><i class="fas fa-star"></i></div>
-                    <div class="notif-text"><strong>Haftanın Lideri</strong><p>Bu hafta liderlik tablosunda yükseliştesin.</p></div>
-                </li>
-            </ul>
         </div>
     </div>
 
     <div id="modal-wallet" class="modal-overlay">
         <div class="modal-box">
             <h3>Cüzdanım</h3>
-            <div class="wallet-card">
-                <span>Toplam Bakiye</span>
-                <h1>145,00 ₺</h1>
-            </div>
-            <h4 style="text-align: left; margin-top: 20px;">Hareketler</h4>
+            <div class="wallet-card"><span>Toplam Bakiye</span><h1>145,00 ₺</h1></div>
             <ul class="wallet-list">
-                <li><span>Atık Geliri (Kağıt)</span> <span class="plus">+45,00 ₺</span></li>
-                <li><span>Market Harcaması</span> <span class="minus">-20,00 ₺</span></li>
-                <li><span>Atık Geliri (Metal)</span> <span class="plus">+120,00 ₺</span></li>
+                <li><span>Atık Geliri</span> <span class="plus">+45 ₺</span></li>
+                <li><span>Market</span> <span class="minus">-20 ₺</span></li>
             </ul>
             <button class="btn-cancel" onclick="closeModal('modal-wallet')">Kapat</button>
         </div>
@@ -203,54 +175,27 @@
         <div class="modal-box full-height">
             <div class="modal-header"><h3>Ödül Marketi</h3><button class="btn-close-icon" onclick="closeModal('modal-market')"><i class="fas fa-times"></i></button></div>
             <div class="market-grid">
-                <div class="market-item" onclick="alert('Kupon Kodu: KAHVE2025\nAfiyet olsun!')">
-                    <div class="item-img"><i class="fas fa-coffee"></i></div>
-                    <h4>Ücretsiz Kahve</h4>
-                    <span class="price">500 Puan</span>
-                </div>
-                <div class="market-item" onclick="alert('Kupon Kodu: GAZIBUS\nKartına yüklendi!')">
-                    <div class="item-img"><i class="fas fa-bus"></i></div>
-                    <h4>Otobüs Bileti</h4>
-                    <span class="price">300 Puan</span>
-                </div>
-                <div class="market-item" onclick="alert('Tebrikler! Fidan sertifikan mailine gönderildi.')">
-                    <div class="item-img"><i class="fas fa-seedling"></i></div>
-                    <h4>Fidan Bağışı</h4>
-                    <span class="price">1000 Puan</span>
-                </div>
+                <div class="market-item" onclick="alert('Kuponun: KAHVE25')"><div class="item-img"><i class="fas fa-coffee"></i></div><h4>Kahve</h4><span class="price">500 P</span></div>
+                <div class="market-item" onclick="alert('Kartına yüklendi!')"><div class="item-img"><i class="fas fa-bus"></i></div><h4>Bilet</h4><span class="price">300 P</span></div>
             </div>
-        </div>
-    </div>
-
-    <div id="modal-detail" class="modal-overlay">
-        <div class="modal-box">
-            <i class="fas fa-book" style="font-size: 3rem; color: #8d6e63; margin-bottom: 15px;"></i>
-            <h3>Eski Kitaplar</h3>
-            <p><strong>Tarih:</strong> 21 Kasım 2025</p>
-            <p><strong>Durum:</strong> <span style="color:green; font-weight:bold;">Onaylandı</span></p>
-            <p><strong>Kazanılan:</strong> 50 Puan</p>
-            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
-            <p style="font-size: 0.8rem; color:#777;">Bu atık, Şehitkamil toplama ekibi tarafından teslim alındı ve geri dönüşüm merkezine iletildi.</p>
-            <button class="btn-submit" onclick="closeModal('modal-detail')">Tamam</button>
         </div>
     </div>
 
     <div id="modal-settings" class="modal-overlay">
         <div class="modal-box">
             <h3>Ayarlar</h3>
-            <div class="setting-item">
-                <span>Bildirimleri Aç</span>
-                <input type="checkbox" checked>
-            </div>
-            <div class="setting-item">
-                <span>Konum Paylaşımı</span>
-                <input type="checkbox" checked>
-            </div>
-            <div class="setting-item">
-                <span>Karanlık Mod</span>
-                <input type="checkbox">
-            </div>
+            <div class="setting-item"><span>Bildirimler</span><input type="checkbox" checked></div>
+            <div class="setting-item"><span>Konum</span><input type="checkbox" checked></div>
             <button class="btn-submit" onclick="closeModal('modal-settings')">Kaydet</button>
+        </div>
+    </div>
+
+    <div id="modal-detail" class="modal-overlay">
+        <div class="modal-box">
+            <i class="fas fa-book" style="font-size: 3rem; color: #8d6e63; margin-bottom: 10px;"></i>
+            <h3>Eski Kitaplar</h3>
+            <p>Tarih: 21 Kasım • Durum: Onaylandı</p>
+            <button class="btn-submit" onclick="closeModal('modal-detail')">Tamam</button>
         </div>
     </div>
 
