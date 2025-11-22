@@ -1,64 +1,96 @@
-// TAB DEĞİŞTİRME
+// 1. SEKME DEĞİŞTİRME (Tab Switching)
 function switchTab(viewId, element) {
-    document.querySelectorAll('.tab-view').forEach(view => view.style.display = 'none');
-    document.getElementById('view-' + viewId).style.display = 'block';
-    
-    document.querySelectorAll('.nav-item:not(.center-fab)').forEach(item => item.classList.remove('active'));
+    // Tüm ekranları gizle
+    document.querySelectorAll('.tab-view').forEach(view => {
+        view.style.display = 'none';
+    });
+
+    // İstenen ekranı aç
+    const target = document.getElementById('view-' + viewId);
+    if (target) {
+        target.style.display = 'block';
+    }
+
+    // Menü renklerini ayarla (Ortadaki büyük buton hariç)
+    document.querySelectorAll('.nav-item:not(.center-fab)').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // Tıklanan menüyü aktif yap (Eğer ortadaki buton değilse)
     if (element && !element.classList.contains('center-fab')) {
         element.classList.add('active');
     }
 }
 
-// MODAL AÇ/KAPA
+// 2. MODAL (Pencere) AÇMA / KAPATMA
 function openModal(modalId) {
-    document.getElementById(modalId).style.display = 'flex';
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'flex';
+    }
     // Bildirim açıldıysa kırmızı noktayı gizle
     if(modalId === 'modal-notifications') {
-        document.getElementById('notif-dot').style.display = 'none';
+        const dot = document.getElementById('notif-dot');
+        if(dot) dot.style.display = 'none';
     }
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-    // Report modalını resetle
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    
+    // Rapor modalıysa içeriği sıfırla
     if(modalId === 'modal-report') {
-        document.getElementById('report-step-1').style.display = 'block';
-        document.getElementById('report-step-2').style.display = 'none';
-        document.querySelector('.upload-zone').classList.remove('active');
-        document.querySelector('.upload-zone p').innerText = "Fotoğraf Yükle";
-        document.getElementById('btn-send-report').classList.add('disabled');
+        resetReportModal();
     }
 }
 
-// DOSYA YÜKLEME EFEKTİ
+// 3. RAPORLAMA İŞLEMLERİ
 function userFileUploaded() {
     const zone = document.querySelector('.upload-zone');
+    const btn = document.getElementById('btn-send-report');
+    
+    // Yüklendi efekti
     zone.classList.add('active');
-    zone.innerHTML = '<i class="fas fa-check-circle"></i><p>Fotoğraf Hazır</p>';
-    document.getElementById('btn-send-report').classList.remove('disabled');
+    zone.innerHTML = '<i class="fas fa-check-circle" style="color:green; font-size:2rem;"></i><p>Fotoğraf Hazır</p>';
+    
+    // Gönder butonunu aktif et
+    btn.classList.remove('disabled');
 }
 
-// RAPOR GÖNDERME
 function sendReport() {
+    // Adım 1'i gizle, Adım 2'yi göster
     document.getElementById('report-step-1').style.display = 'none';
     document.getElementById('report-step-2').style.display = 'block';
 }
 
 function finishReport() {
     closeModal('modal-report');
-    alert("Puan hesabına eklendi! 🌳");
+    alert("🎉 Harika! Bildirimin bize ulaştı. Onaylanınca puanın yüklenecek.");
 }
 
-// HARİTA BİLGİ BALONU
+function resetReportModal() {
+    document.getElementById('report-step-1').style.display = 'block';
+    document.getElementById('report-step-2').style.display = 'none';
+    const zone = document.querySelector('.upload-zone');
+    zone.classList.remove('active');
+    zone.innerHTML = '<i class="fas fa-cloud-upload-alt"></i><p>Fotoğraf Yükle</p>';
+    document.getElementById('btn-send-report').classList.add('disabled');
+}
+
+// 4. HARİTA BİLGİ BALONU (Toast)
 function showMapInfo(title, desc, color) {
     const toast = document.getElementById('map-toast');
+    
     document.getElementById('toast-title').innerText = title;
-    document.getElementById('toast-desc').innerText = desc;
     document.getElementById('toast-title').style.color = color;
+    document.getElementById('toast-desc').innerText = desc;
     
     toast.style.display = 'block';
     
-    // 3 saniye sonra kaybolsun
+    // 3 saniye sonra otomatik kaybolsun
     setTimeout(() => {
         toast.style.display = 'none';
     }, 3000);
